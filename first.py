@@ -23,7 +23,7 @@ import numpy as np
 # a=a.reshape(4,5)
 # print(a)
 # b=np.arange(10,20)
-# print(a.sum(0))  # 0 for coloumn and 1 for row
+# print(a.sum(1))  # 0 for coloumn and 1 for row
 # print(a[1,2])
 # print(a.max())
 # print(a.min())
@@ -45,5 +45,54 @@ import numpy as np
 #     if i.lower() not in 'aeiou':
 #         ms+=i
 # print(ms)
+
 # a=[1,2,3,4]
 # print(a)
+
+#date = 26 may
+
+# a=np.arange(10)
+# print(a)
+# b=a[1::2]
+# c=a[::-1]
+# print(c)
+
+# a=np.arange(12)
+#
+# a=a.reshape(3,4)
+# # print(a[::,::-1])    #reverse the elements of row
+# # print(a,a[1:list(a.shape)[0]-1,1:list(a.shape)[1]-1])
+#
+#
+# b=np.arange(12,24)
+
+# print(np.column_stack((a,b)))
+
+
+
+
+
+
+
+# dt=np.dtype([('City','S20'),('Population',np.int),('Area',np.int),('State','S20')])
+#
+#
+# data=np.array([('ghaziabad',320,230,'UP'),('gwalior',160,120,'MP'),('chandigarh',65,145,'CH'),('dhanbad',100,147,'JH'),('meerut',148,452,'UP')],dtype=dt)
+# print(data['City'])
+# np.savetxt('test.csv', data,fmt='%.20s %.3d %.3d %.20s')
+# data1=np.loadtxt('test.csv', dtype=dt)
+# print(data1)
+
+
+
+dt=np.dtype([('City',np.unicode,'S40'),('Population',np.int),('Area',np.int),('State',np.unicode,'S20')])
+# #
+# #
+data=np.array([('ghaziabad',320,230,'UP'),('gwalior',160,120,'MP'),('chandigarh',65,145,'CH'),('dhanbad',100,147,'JH'),('meerut',148,452,'UP')],dtype=dt)
+# # print(data['City'])
+np.savetxt('test1.csv', data,fmt='%.20s %.3d %.3d %.20s',delimiter=',')
+# #data1=np.loadtxt('test1.csv', dtype=None)
+#
+# #print(data1)
+#
+# import pandas as pd
