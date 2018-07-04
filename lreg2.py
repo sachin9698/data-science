@@ -2,7 +2,11 @@ import pandas as pd
 import numpy as np
 from sklearn.feature_selection import RFE
 from sklearn.cross_validation import train_test_split
-from sklearn.linear_model import LogisticRegression
+# from sklearn.metrics import confusion_matrix
+# from sklearn.linear_model import LogisticRegression
+from sklearn.neighbors import KNeighborsClassifier
+# from sklearn.ensemble import RandomForestClassifier
+# from sklearn.tree import DecisionTreeClassifier
 pd.set_option('display.max_columns',12)
 
 data1=pd.read_csv('train.csv')
@@ -83,8 +87,8 @@ mddf1.drop('Title_Others',inplace=True,axis=1)   #after watching in summary
 
 
 x_train,x_test,y_train,y_test=train_test_split(mdf1,data1['Survived'],test_size=0.2,random_state=5)
-reg=LogisticRegression()
-model=reg.fit(x_train,y_train, sample_weight=None)
+reg=KNeighborsClassifier(n_neighbors=5,weights='distance')
+model=reg.fit(x_train,y_train)
 # y_pred=model.predict(x_test)
 
 y_pred=model.predict(mddf1)
@@ -92,15 +96,17 @@ y_pred=model.predict(mddf1)
 data_csv=pd.read_csv('gender_submission.csv')
 data_csv.drop('Survived',inplace=True,axis=1)
 data_csv['Survived']=y_pred
-data_csv.to_csv('output2.csv')
+data_csv.to_csv('output3.csv')
 print(data_csv)
 
 # print(mddf1.columns)
 # print(data4.columns)
 
-# print(reg.score(x_test,y_test))
+print(reg.score(x_test,y_test))
 
 # import statsmodels.api as sm
 # lm=sm.Logit(data1['Survived'],mdf1)
 # a=lm.fit()
 # print(a.summary())
+
+#hello
